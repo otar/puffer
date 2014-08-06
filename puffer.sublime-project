@@ -1,0 +1,21 @@
+{
+	"folders":
+	[
+		{
+			"file_exclude_patterns":
+			[
+				"composer.lock"
+			],
+			"folder_exclude_patterns":
+			[
+				"_old",
+				".vagrant",
+				"vendor",
+				"node_modules"
+			],
+			"follow_symlinks": true,
+			"name": "Puffer",
+			"path": "."
+		}
+	]
+}

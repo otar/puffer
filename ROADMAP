@@ -1,0 +1,4 @@
+- Setup Travis CI
+- Improved oAuth handling
+- Add ArrayAccess to Profile class
+- Improve code coverage (especially for Updates class)
