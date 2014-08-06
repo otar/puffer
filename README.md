@@ -11,13 +11,11 @@ Installation
 ------------
 Best way to get Puffer up and running is [Composer][4]. Include `otar/puffer` in your composer.json requirements:
 
-    ```js
     {
         "require": {
             "otar/puffer": "dev-master"
         }
     }
-    ```
 
 Alternatively you can grab code from this repository, but you will have to manually install dependencies in the `vendor/` directory and take care of PSR-4 autoloading.
 
@@ -28,7 +26,6 @@ Basic Usage
 
 **Initialize & Authorize**
 
-    ```
     <?php
 
     use Puffer\Puffer;
@@ -47,15 +44,12 @@ Basic Usage
 
     var_dump($puffer->user); // Get user settings
 
-    ```
-
 
 ----------
 
 
 **List Your Profiles**
 
-    ```
     <?php
 
     use Puffer\Profiles;
@@ -73,24 +67,20 @@ Basic Usage
     foreach ($profiles AS $profile) {
         $profile->create('Hello World');
     }
-    ```
 
 ----------
 
 **List Pending Updates**
 
-    ```
     <?php
 
     use Puffer\Profiles;
 
     // Grab first profile and it's pending updates in one line.
     $pending = (new Profiles)[0]->pending();
-    ```
 
 **Create An Update**
 
-    ```
     <?php
 
     use Puffer\Profile;
@@ -107,13 +97,11 @@ Basic Usage
     // Or like this:
 
     $result = (new Profile('YOUR_PROFILE_ID_HERE'))->create('Hello World');
-    ```
 
 ----------
 
 **Delete Pending Update**
 
-    ```
     <?php
 
     use Puffer\Profiles;
@@ -126,7 +114,6 @@ Basic Usage
     // Or grab first profile and delete first pending update in one line:
 
     $result = (new Profiles)[0]->pending()[0]->destroy();
-    ```
 
 
 ----------
@@ -190,7 +177,7 @@ And to help you finish reading this stuff in a good mood here's a joke:
 
 **Husband**: sudo make me a sandwich.
 
-**Wife: Okay...**
+**Wife**: Okay...
 
 Thanks for staying tuned! :)
 
