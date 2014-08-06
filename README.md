@@ -28,7 +28,7 @@ Basic Usage
 
 **Initialize & Authorize**
 
-    ```php
+    ```
     <?php
 
     use Puffer\Puffer;
@@ -55,7 +55,7 @@ Basic Usage
 
 **List Your Profiles**
 
-    ```php
+    ```
     <?php
 
     use Puffer\Profiles;
@@ -79,7 +79,7 @@ Basic Usage
 
 **List Pending Updates**
 
-    ```php
+    ```
     <?php
 
     use Puffer\Profiles;
@@ -90,7 +90,7 @@ Basic Usage
 
 **Create An Update**
 
-    ```php
+    ```
     <?php
 
     use Puffer\Profile;
@@ -113,7 +113,7 @@ Basic Usage
 
 **Delete Pending Update**
 
-    ```php
+    ```
     <?php
 
     use Puffer\Profiles;
@@ -185,8 +185,11 @@ Best way to reach me is an email or Twitter. See my contact information here: [h
 And to help you finish reading this stuff in a good mood here's a joke:
 
 **Husband**: make me a sandwich.
+
 **Wife**: what? make it yourself!
+
 **Husband**: sudo make me a sandwich.
+
 **Wife: Okay...**
 
 Thanks for staying tuned! :)
