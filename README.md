@@ -11,21 +11,24 @@ Installation
 ------------
 Best way to get Puffer up and running is [Composer][4]. Include `otar/puffer` in your composer.json requirements:
 
+    ```js
     {
         "require": {
-            "otar/puffer": "1.*"
+            "otar/puffer": "dev-master"
         }
     }
+    ```
 
 Alternatively you can grab code from this repository, but you will have to manually install dependencies in the `vendor/` directory and take care of PSR-4 autoloading.
 
 ----------
 
-Basic Usage {#usage}
+Basic Usage
 -----------
 
 **Initialize & Authorize**
 
+    ```php
     <?php
 
     use Puffer\Puffer;
@@ -44,6 +47,7 @@ Basic Usage {#usage}
 
     var_dump($puffer->user); // Get user settings
 
+    ```
 
 
 ----------
@@ -51,6 +55,7 @@ Basic Usage {#usage}
 
 **List Your Profiles**
 
+    ```php
     <?php
 
     use Puffer\Profiles;
@@ -68,20 +73,24 @@ Basic Usage {#usage}
     foreach ($profiles AS $profile) {
         $profile->create('Hello World');
     }
+    ```
 
 ----------
 
 **List Pending Updates**
 
+    ```php
     <?php
 
     use Puffer\Profiles;
 
     // Grab first profile and it's pending updates in one line.
     $pending = (new Profiles)[0]->pending();
+    ```
 
 **Create An Update**
 
+    ```php
     <?php
 
     use Puffer\Profile;
@@ -98,11 +107,13 @@ Basic Usage {#usage}
     // Or like this:
 
     $result = (new Profile('YOUR_PROFILE_ID_HERE'))->create('Hello World');
+    ```
 
 ----------
 
 **Delete Pending Update**
 
+    ```php
     <?php
 
     use Puffer\Profiles;
@@ -115,11 +126,12 @@ Basic Usage {#usage}
     // Or grab first profile and delete first pending update in one line:
 
     $result = (new Profiles)[0]->pending()[0]->destroy();
+    ```
 
 
 ----------
 
-Basic Docs {#basicdocs}
+Basic Docs
 ------------
 Library is contextually separated into four major classes:
 
@@ -172,16 +184,16 @@ Best way to reach me is an email or Twitter. See my contact information here: [h
 
 And to help you finish reading this stuff in a good mood here's a joke:
 
-> Husband: make me a sandwich.
-> Wife: what? make it yourself!
-> Husband: sudo make me a sandwich.
-> Wife: Okay...
+**Husband**: make me a sandwich.
+**Wife**: what? make it yourself!
+**Husband**: sudo make me a sandwich.
+**Wife: Okay...**
 
 Thanks for staying tuned! :)
 
   [1]: https://bufferapp.com/developers/api
-  [2]: #usage
-  [3]: #basicdocs
+  [2]: #basic-usage
+  [3]: #basic-docs
   [4]: https://getcomposer.org/
   [5]: http://gruntjs.com/
   [6]: https://www.npmjs.org/
