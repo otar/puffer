@@ -1,4 +1,4 @@
-**Puffer** for **Buffer**
+Puffer for Buffer
 =========================
 
 [![Latest Stable Version](https://poser.pugx.org/otar/puffer/v/stable.svg)](https://packagist.org/packages/otar/puffer)[![License](https://poser.pugx.org/otar/puffer/license.svg)](https://packagist.org/packages/otar/puffer)
@@ -28,7 +28,7 @@ Alternatively you can grab code from this repository, but you will have to manua
 Basic Usage
 -----------
 
-**Initialize & Authorize**
+Initialize & Authorize
 
 ```php
 <?php
@@ -54,7 +54,7 @@ var_dump($puffer->user); // Get user settings
 ----------
 
 
-**List Your Profiles**
+List Your Profiles
 
 ```php
 <?php
@@ -79,7 +79,7 @@ foreach ($profiles AS $profile) {
 
 ----------
 
-**List Pending Updates**
+List Pending Updates
 
 ```php
 <?php
@@ -90,7 +90,7 @@ use Puffer\Profiles;
 $pending = (new Profiles)[0]->pending();
 ```
 
-**Create An Update**
+Create An Update
 
 ```php
 <?php
@@ -113,7 +113,7 @@ $result = (new Profile('YOUR_PROFILE_ID_HERE'))->create('Hello World');
 
 ----------
 
-**Delete Pending Update**
+Delete Pending Update
 
 ```php
 <?php
@@ -136,21 +136,21 @@ Basic Docs
 ------------
 Library is contextually separated into four major classes:
 
- - **Puffer**
+ - Puffer
      - Used for initialization, auth and making calls to the API.
      - Access `user` and `configuration` object properties for related results from `/user` and `/info/configuration`.
      - `shares()` accepts link as an argument and return it's number of shares through Buffer platform.
- - **Profiles**
+ - Profiles
      - Retrieves all profiles under your account.
      - Use `all()` method for returning profiles as an array.
      - Profiles can be accessed as an array, iterated in the loops or counted using PHP's `count` function.
      - All profiles are returned as an objects that have their own functionality. See Profile description below.
- - **Profile**
+ - Profile
      - Accepts profile ID as an argument.
      - Profile data can be accessed from the objects' properties or as an associative array.
      - `sent()` method returns already sent updates from this profile and `pending()` method returns currently buffered/pending updates.
      - You can create/buffer an update directly from the `create()` method. Accepts text as an argument.
- - **Update**
+ - Update
      - Accepts update ID as an argument.
      - Update data can be accessed from the objects' properties or as an associative array.
      - Supports these methods: `edit()`, `share()`, `interactions()`, `destroy()` and `moveToTop()`.
@@ -186,13 +186,10 @@ Best way to reach me is an email or Twitter. See my contact information here: [h
 And to help you finish reading this stuff in a good mood here's a joke:
 
 ```
-**Husband**: make me a sandwich.
-
-**Wife**: what? make it yourself!
-
-**Husband**: sudo make me a sandwich.
-
-**Wife**: Okay...
+Husband: make me a sandwich.
+Wife: what? make it yourself!
+Husband: sudo make me a sandwich.
+Wife: okay...
 ```
 
 Thanks for staying tuned! :)
