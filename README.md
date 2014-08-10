@@ -16,7 +16,7 @@ Best way to get Puffer up and running is [Composer][4]. Include `otar/puffer` in
 ```json
 {
     "require": {
-        "otar/puffer": "dev-master"
+        "otar/puffer": "1.*"
     }
 }
 ```
@@ -147,7 +147,7 @@ Library is contextually separated into four major classes:
      - All profiles are returned as an objects that have their own functionality. See Profile description below.
  - **Profile**
      - Accepts profile ID as an argument.
-     - Profile data can be accessed from the objects' properties (array access coming soon).
+     - Profile data can be accessed from the objects' properties or as an associative array.
      - `sent()` method returns already sent updates from this profile and `pending()` method returns currently buffered/pending updates.
      - You can create/buffer an update directly from the `create()` method. Accepts text as an argument.
  - **Update**
@@ -185,6 +185,7 @@ Best way to reach me is an email or Twitter. See my contact information here: [h
 
 And to help you finish reading this stuff in a good mood here's a joke:
 
+```
 **Husband**: make me a sandwich.
 
 **Wife**: what? make it yourself!
@@ -192,6 +193,7 @@ And to help you finish reading this stuff in a good mood here's a joke:
 **Husband**: sudo make me a sandwich.
 
 **Wife**: Okay...
+```
 
 Thanks for staying tuned! :)
 
