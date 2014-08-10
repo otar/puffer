@@ -13,11 +13,13 @@ Installation
 ------------
 Best way to get Puffer up and running is [Composer][4]. Include `otar/puffer` in your composer.json requirements:
 
-    {
-        "require": {
-            "otar/puffer": "dev-master"
-        }
+```json
+{
+    "require": {
+        "otar/puffer": "dev-master"
     }
+}
+```
 
 Alternatively you can grab code from this repository, but you will have to manually install dependencies in the `vendor/` directory and take care of PSR-4 autoloading.
 
@@ -28,23 +30,25 @@ Basic Usage
 
 **Initialize & Authorize**
 
-    <?php
+```php
+<?php
 
-    use Puffer\Puffer;
+use Puffer\Puffer;
 
-    $puffer = new Puffer([
-        'consumer_key' => 'YOUR_CONSUMER_KEY_HERE',
-        'consumer_secret' => 'YOUR_CONSUMER_SECRET_HERE',
-        'access_token' => 'YOUR_ACCESS_TOKEN_HERE', // If you have one, or authorization will be required
-        'storage' => new \Puffer\Storages\Session // Stores tokens in the session (default). Implement Puffer\StorageInterface class to save tokens in the database.
-    ]);
+$puffer = new Puffer([
+    'consumer_key' => 'YOUR_CONSUMER_KEY_HERE',
+    'consumer_secret' => 'YOUR_CONSUMER_SECRET_HERE',
+    'access_token' => 'YOUR_ACCESS_TOKEN_HERE', // If you have one, or authorization will be required
+    'storage' => new \Puffer\Storages\Session // Stores tokens in the session (default). Implement Puffer\StorageInterface class to save tokens in the database.
+]);
 
-    if (!$puffer->isAuthorized()) {
-        header('Location: ' . $puffer->getAuthUrl());
-        exit;
-    }
+if (!$puffer->isAuthorized()) {
+    header('Location: ' . $puffer->getAuthUrl());
+    exit;
+}
 
-    var_dump($puffer->user); // Get user settings
+var_dump($puffer->user); // Get user settings
+```
 
 
 ----------
@@ -52,71 +56,79 @@ Basic Usage
 
 **List Your Profiles**
 
-    <?php
+```php
+<?php
 
-    use Puffer\Profiles;
-    $profiles = new Profiles();
+use Puffer\Profiles;
 
-    var_dump($profiles->all()); // All profiles
+$profiles = new Profiles();
 
-    // Also Profiles object can be accessed as an array,
-    $first_profile = $profiles[0];
+var_dump($profiles->all()); // All profiles
 
-    // be counted,
-    $number_of_profiles = count($profiles);
+// Also Profiles object can be accessed as an array,
+$first_profile = $profiles[0];
 
-    // or even be iterated.
-    foreach ($profiles AS $profile) {
-        $profile->create('Hello World');
-    }
+// be counted,
+$number_of_profiles = count($profiles);
+
+// or even be iterated.
+foreach ($profiles AS $profile) {
+    $profile->create('Hello World');
+}
+```
 
 ----------
 
 **List Pending Updates**
 
-    <?php
+```php
+<?php
 
-    use Puffer\Profiles;
+use Puffer\Profiles;
 
-    // Grab first profile and it's pending updates in one line.
-    $pending = (new Profiles)[0]->pending();
+// Grab first profile and it's pending updates in one line.
+$pending = (new Profiles)[0]->pending();
+```
 
 **Create An Update**
 
-    <?php
+```php
+<?php
 
-    use Puffer\Profile;
+use Puffer\Profile;
 
-    $profile = new Profile('YOUR_PROFILE_ID_HERE');
-    $result = $profile->create('Hello World');
+$profile = new Profile('YOUR_PROFILE_ID_HERE');
+$result = $profile->create('Hello World');
 
-    if ((bool) $result->success) {
-        echo 'One more update buffered in your queue.';
-    } else {
-        echo 'Something went wrong.';
-    }
+if ((bool) $result->success) {
+    echo 'One more update buffered in your queue.';
+} else {
+    echo 'Something went wrong.';
+}
 
-    // Or like this:
+// Or like this:
 
-    $result = (new Profile('YOUR_PROFILE_ID_HERE'))->create('Hello World');
+$result = (new Profile('YOUR_PROFILE_ID_HERE'))->create('Hello World');
+```
 
 ----------
 
 **Delete Pending Update**
 
-    <?php
+```php
+<?php
 
-    use Puffer\Profiles;
-    use Puffer\Update;
+use Puffer\Profiles;
+use Puffer\Update;
 
-    // If you have an update id, then:
-    $update = new Update('UPDATE_ID_HERE');
-    $update->delete();
+// If you have an update id, then:
+$update = new Update('UPDATE_ID_HERE');
+$update->delete();
 
-    // Or grab first profile and delete first pending update in one line:
+// Or grab first profile and delete first pending update in one line:
 
-    $result = (new Profiles)[0]->pending()[0]->destroy();
-
+$result = (new Profiles)[0]->pending()[0]->destroy();
+```
 
 ----------
 
