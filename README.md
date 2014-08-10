@@ -1,6 +1,8 @@
 **Puffer** for **Buffer**
 =========================
 
+[![Latest Stable Version](https://poser.pugx.org/otar/puffer/v/stable.svg)](https://packagist.org/packages/otar/puffer)[![License](https://poser.pugx.org/otar/puffer/license.svg)](https://packagist.org/packages/otar/puffer)
+
 Puffer is a [Buffer API][1] wrapper library for PHP.
 
 Full documentation coming soon. Meanwhile take a look at [Basic Usage][2] and [Basic Docs][3] sections below. Also dig deeper into the source code, aren't we hackers? :)
