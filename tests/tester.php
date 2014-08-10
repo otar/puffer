@@ -13,24 +13,6 @@ class tester extends \PHPUnit_Framework_TestCase
     public function __construct()
     {
         if (empty(self::$config)) {
-            /*
-            $params = [
-                'consumer_key'
-                'consumer_secret'
-                'access_token'
-                // IDs and specific user values for @BuffApiTest twitter user
-                'tests' => [
-                    'user_id' => '531d9b035a05ad7e6f000003',
-                    'profile_id' => '5322f4f264f0894c5b24fe65',
-                    'update_id' => '533ac0fe7088f53013aca435',
-                    'username' => 'BuffApiTest',
-                    'share' => [
-                        'url' => 'https://news.ycombinator.com/',
-                        'greater_than' => 500 // Last time I checked it was 510, lets floor it to 500
-                    ]
-                ]
-            ];
-            */
             self::$config = require_once 'config.php';
         }
     }
@@ -63,7 +45,7 @@ class tester extends \PHPUnit_Framework_TestCase
     protected function doTestProfile($profile)
     {
         $this->assertTrue($profile instanceof \Puffer\Profile);
-        $this->assertArrayHasKeys((array) $profile, [
+        $items = [
             '_id',
             'id',
             'default',
@@ -71,7 +53,9 @@ class tester extends \PHPUnit_Framework_TestCase
             'service',
             'service_id',
             'user_id'
-        ]);
+        ];
+        $this->assertArrayHasKeys($profile, $items);
+        $this->assertObjectHasAttributes($profile, $items);
     }
 
     protected function doTestUpdate($update)
