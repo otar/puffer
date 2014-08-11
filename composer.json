@@ -1,10 +1,28 @@
 {
 	"name": "otar/puffer",
-	"version": "1.0.0",
-	"description": "",
+	"version": "1.0.1",
+	"description": "PHP wrapper library for Buffer API.",
     "type": "library",
-    "keywords": [],
-    "homepage": "http://chekurishvili.com/",
+    "keywords": [
+        "Buffer",
+        "Puffer",
+        "API",
+        "Share",
+        "Sharing",
+        "Social",
+        "Social Media",
+        "Twitter",
+        "Facebook",
+        "LinkedIn",
+        "Publish",
+        "Schedule",
+        "Scheduling",
+        "Post",
+        "Posting",
+        "Status",
+        "Tweet"
+    ],
+    "homepage": "https://github.com/otar/puffer",
     "license": "MIT",
     "authors": [
         {
@@ -13,7 +31,7 @@
         }
     ],
     "support": {
-        "issues": "http://chekurishvili.com/"
+        "issues": "https://github.com/otar/puffer/issues"
     },
     "require": {
     	"guzzlehttp/guzzle": "4.*",
