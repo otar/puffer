@@ -1,7 +1,7 @@
 Puffer for Buffer
 =========================
 
-[![Latest Stable Version](https://poser.pugx.org/otar/puffer/v/stable.svg)](https://packagist.org/packages/otar/puffer)[![License](https://poser.pugx.org/otar/puffer/license.svg)](https://packagist.org/packages/otar/puffer)
+[![Latest Stable Release](https://poser.pugx.org/otar/puffer/v/stable.svg)](https://packagist.org/packages/otar/puffer) [![License](https://poser.pugx.org/otar/puffer/license.svg)](https://github.com/otar/puffer/blob/master/LICENSE)
 
 Puffer is a [Buffer API][1] wrapper library for PHP.
 
@@ -61,7 +61,7 @@ List Your Profiles
 
 use Puffer\Profiles;
 
-$profiles = new Profiles();
+$profiles = new Profiles;
 
 var_dump($profiles->all()); // All profiles
 
