@@ -1,7 +1,11 @@
+### Directories
 /_old/
 /.vagrant/
 /vendor/
 /node_modules/
+
+## Files
 /tests/config.php
 /composer.lock
+/puffer.sublime-workspace
 /test.php
