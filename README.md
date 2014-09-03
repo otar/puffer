@@ -1,7 +1,7 @@
 Puffer for Buffer
 =========================
 
-[![Latest Stable Release](https://poser.pugx.org/otar/puffer/v/stable.svg)](https://packagist.org/packages/otar/puffer) [![License](https://poser.pugx.org/otar/puffer/license.svg)](https://github.com/otar/puffer/blob/master/LICENSE)
+[![Latest Stable Release](https://poser.pugx.org/otar/puffer/v/stable.svg)](https://packagist.org/packages/otar/puffer) [![Build Status](https://travis-ci.org/otar/puffer.svg?branch=develop)](https://travis-ci.org/otar/puffer) [![License](https://poser.pugx.org/otar/puffer/license.svg)](https://github.com/otar/puffer/blob/master/LICENSE)
 
 Puffer is a [Buffer API][1] wrapper library for PHP.
 
