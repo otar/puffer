@@ -175,6 +175,8 @@ I encourage you to use [GruntJS][5]. You'll need to install these NodeJS modules
 
 After installing GruntJS plugins, simply run the `grunt` command. It will begin to "watch" modifications in the `src/` and `tests/` directories and run Grunt tasks as soon as you change something in the `*.php` files.
 
+> For testing you may prefer to use local PHPUnit installation, please make sure it's updated to the latest version.
+
 First create an issue, fork a repository, make changes and make "pull request".
 
 ----------
