@@ -34,8 +34,8 @@ class ProfilesTest extends Tester
         $profiles = $this->getProfiles();
         $this->assertTrue(isset($profiles[0]));
         $this->doTestProfile($profiles[0]);
-        $this->assertEquals($profiles[0]->id, self::$config['tests']['profile_id']);
-        $this->assertEquals($profiles[0]->user_id, self::$config['tests']['user_id']);
+        $this->assertEquals($profiles[0]->id, self::$conf['profile_id']);
+        $this->assertEquals($profiles[0]->user_id, self::$conf['user_id']);
         $this->assertTrue((bool) $profiles[0]->default);
     }
 

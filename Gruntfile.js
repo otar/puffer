@@ -40,7 +40,8 @@ module.exports = function(grunt)
         },
         options: {
             bootstrap: 'tests/bootstrap.php',
-            colors: true
+            colors: true,
+            stderr: true
         }
     });
 

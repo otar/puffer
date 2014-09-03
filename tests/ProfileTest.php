@@ -13,7 +13,7 @@ class ProfileTest extends Tester
 
     private function getProfile()
     {
-        self::$profile === null and self::$profile = new Profile(self::$config['tests']['profile_id']);
+        self::$profile === null and self::$profile = new Profile(self::$conf['profile_id']);
 
         return self::$profile;
     }
@@ -24,8 +24,8 @@ class ProfileTest extends Tester
     {
         $profile = $this->getprofile();
         $this->doTestProfile($profile);
-        $this->assertEquals(self::$config['tests']['profile_id'], $profile->id);
-        $this->assertEquals(self::$config['tests']['username'], $profile->service_username);
+        $this->assertEquals(self::$conf['profile_id'], $profile->id);
+        $this->assertEquals(self::$conf['username'], $profile->service_username);
         $this->assertEquals('twitter', $profile->service);
     }
 

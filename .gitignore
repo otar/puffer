@@ -6,6 +6,7 @@
 
 ## Files
 /tests/config.php
+/.htaccess
 /composer.lock
 /puffer.sublime-workspace
 /test.php

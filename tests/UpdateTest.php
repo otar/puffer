@@ -11,7 +11,7 @@ class UpdateTest extends Tester
 
     protected function getUpdate()
     {
-        null === self::$update and self::$update = new Update(self::$config['tests']['update_id']);
+        null === self::$update and self::$update = new Update(self::$conf['update_id']);
 
         return self::$update;
     }

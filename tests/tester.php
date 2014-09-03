@@ -3,23 +3,52 @@
 namespace Puffer\Tests;
 
 use Puffer\Puffer;
+use Puffer\Exception;
 
 class tester extends \PHPUnit_Framework_TestCase
 {
 
     protected static $puffer,
-        $config = [];
+        $conf = [];
 
     public function __construct()
     {
-        if (empty(self::$config)) {
-            self::$config = require_once 'config.php';
+        if (!empty(self::$conf)) {
+            return;
+        }
+        $vars = [
+            'CONSUMER_KEY',
+            'CONSUMER_SECRET',
+            'ACCESS_TOKEN',
+            'USER_ID',
+            'PROFILE_ID',
+            'UPDATE_ID',
+            'USERNAME',
+            'SHARE_URL',
+            'SHARE_GREATER_THAN'
+        ];
+        $has_vars = true;
+        foreach ($vars as $var) {
+            if (($env = getenv('PUFFER_' . $var)) === FALSE) {
+                $has_vars = false;
+                self::$conf = [];
+                break;
+            } else {
+                self::$conf[strtolower($var)] = ltrim($env, 'PUFFER_');
+            }
+        }
+        if (!$has_vars) {
+            $conf_file = __DIR__ . '/conf.php';
+            if (!file_exists($conf_file)) {
+                throw new Exception('Configuration file for tests was not found.');
+            }
+            self::$conf = require_once $conf_file;
         }
     }
 
     public function setUp()
     {
-        self::$puffer === NULL and self::$puffer = new Puffer(self::$config);
+        self::$puffer === NULL and self::$puffer = new Puffer(self::$conf);
     }
 
     protected function assertArrayHasKeys($array = [], $keys = [])

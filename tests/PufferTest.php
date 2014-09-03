@@ -26,7 +26,7 @@ class PufferTest extends Tester
             'id',
             'name'
         ]);
-        $this->assertEquals($user['id'], self::$config['tests']['user_id']);
+        $this->assertEquals($user['id'], self::$conf['user_id']);
     }
 
     public function test_configuration()
@@ -40,10 +40,9 @@ class PufferTest extends Tester
 
     public function test_shares()
     {
-        extract(self::$config['tests']['share']);
-        $shares = self::$puffer->shares($url);
+        $shares = self::$puffer->shares(self::$conf['share_url']);
         $this->assertArrayHasKey('shares', $shares);
-        $this->assertGreaterThan($greater_than, $shares['shares']);
+        $this->assertGreaterThan(self::$conf['share_greater_than'], $shares['shares']);
     }
 
 }
