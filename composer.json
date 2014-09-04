@@ -1,6 +1,5 @@
 {
 	"name": "otar/puffer",
-	"version": "1.0.2",
 	"description": "PHP wrapper library for Buffer API.",
     "type": "library",
     "keywords": [
@@ -20,7 +19,8 @@
         "Post",
         "Posting",
         "Status",
-        "Tweet"
+        "Tweet",
+        "Update"
     ],
     "homepage": "https://github.com/otar/puffer",
     "license": "MIT",
