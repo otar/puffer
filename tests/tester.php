@@ -9,6 +9,7 @@ class tester extends \PHPUnit_Framework_TestCase
 {
 
     protected static $puffer,
+        $storage,
         $conf = [];
 
     public function __construct()
@@ -44,11 +45,20 @@ class tester extends \PHPUnit_Framework_TestCase
             }
             self::$conf = require_once $conf_file;
         }
+        if (!isset(self::$conf['storage']) and self::$storage !== null)
+        {
+            self::$conf['storage'] = self::$storage;
+        }
     }
 
     public function setUp()
     {
         self::$puffer === NULL and self::$puffer = new Puffer(self::$conf);
+    }
+
+    public static function setStorage($storage)
+    {
+        self::$storage = $storage;
     }
 
     protected function assertArrayHasKeys($array = [], $keys = [])

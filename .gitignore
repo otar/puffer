@@ -4,7 +4,7 @@
 /vendor/
 /node_modules/
 
-## Files
+### Files
 /tests/conf.php
 /.htaccess
 /composer.lock

@@ -41,7 +41,8 @@ module.exports = function(grunt)
         options: {
             bootstrap: 'tests/bootstrap.php',
             colors: true,
-            stderr: true
+            stopOnError: true,
+            stopOnFailure: true
         }
     });
 
