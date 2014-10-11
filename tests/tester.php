@@ -45,8 +45,7 @@ class tester extends \PHPUnit_Framework_TestCase
             }
             self::$conf = require_once $conf_file;
         }
-        if (!isset(self::$conf['storage']) and self::$storage !== null)
-        {
+        if (!isset(self::$conf['storage']) and self::$storage !== null) {
             self::$conf['storage'] = self::$storage;
         }
     }
