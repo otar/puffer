@@ -29,6 +29,15 @@ class ProfileTest extends Tester
         $this->assertEquals('twitter', $profile->service);
     }
 
+    public function test_profile_by_twitter_username()
+    {
+        $profile = new Profile('@' . self::$conf['username']);
+        $this->doTestProfile($profile);
+        $this->assertEquals(self::$conf['profile_id'], $profile->id);
+        $this->assertEquals(self::$conf['username'], $profile->service_username);
+        $this->assertEquals('twitter', $profile->service);
+    }
+
     public function test_sent()
     {
         $sent = $this->getProfile()->sent();

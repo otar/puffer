@@ -5,18 +5,26 @@ namespace Puffer;
 class Profile extends Core implements \ArrayAccess
 {
 
-    public function __construct($data)
+    /**
+     * @param  mixed  $input
+     * @return object Returns Puffer\Profile object with profile data as public attributes.
+     */
+    public function __construct($input)
     {
 
-        if (is_array($data)) {
-            return $this->setData($data);
-        }
+        switch (true) {
+            case is_array($input):
+                return $this->setData($input);
+            case preg_match('/^@?(\w){1,15}$/', $input):
+                return $this->findProfileByTwitterUsername($input);
+            default:
+                $data = $this->get('profiles/' . $input);
+                $this->setData($data);
 
-        $data = $this->get('profiles/' . $data);
-        $this->setData($data);
-
-        if (!isset($this->id)) {
-            // TODO: throw exception
+                if (!isset($this->id)) {
+                    // TODO: throw exception
+                }
+                break;
         }
 
     }
@@ -32,6 +40,18 @@ class Profile extends Core implements \ArrayAccess
             $this->{$key} = $value;
         }
 
+    }
+
+    private function findProfileByTwitterUsername($username)
+    {
+        $match_username = ltrim(strtolower($username), '@');
+        $profiles = new Profiles;
+        foreach ($profiles as $profile) {
+            if ($profile->service == 'twitter' and $match_username === strtolower($profile->service_username)) {
+                return $this->setData((array) $profile);
+            }
+        }
+        throw new Exception('Can not find profile for the Twitter username "' . $username . '".');
     }
 
     public function offsetExists($key)
