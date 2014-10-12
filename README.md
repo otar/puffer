@@ -183,7 +183,7 @@ First create an issue, fork a repository, make changes and make "pull request".
 
 Final Notes
 ------
-Best way to reach me is an email or Twitter. See my contact information here: [http://chekurishvili.com/][7]
+Best way to reach me is an email or Twitter. See my contact information here: [http://otar.me][7]
 
 And to help you finish reading this stuff in a good mood here's a joke:
 
@@ -202,4 +202,4 @@ Thanks for staying tuned! :)
   [4]: https://getcomposer.org/
   [5]: http://gruntjs.com/
   [6]: https://www.npmjs.org/
-  [7]: http://chekurishvili.com/
+  [7]: http://otar.me/
