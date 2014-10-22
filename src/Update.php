@@ -26,7 +26,7 @@ class Update extends Core implements \ArrayAccess
 
     }
 
-    private function populate(array $data)
+    private function populate(array $data = [])
     {
         if (empty($data)) {
             throw new Exception('Can not populate an update with an empty array. Data is empty.');
