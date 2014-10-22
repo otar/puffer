@@ -109,6 +109,17 @@ class Profile extends Core implements \ArrayAccess
         return $this->getUpdates('pending', $options);
     }
 
+    public function __get($name)
+    {
+        switch (true) {
+            case 'sent':
+                return $this->sent();
+            case 'pending':
+                return $this->pending();
+        }
+        throw new Exception('You have called an undefined attribute "' . $name . '".');
+    }
+
     public function create($text, $options = [])
     {
         // Remove unnecessary options, we already pass them manually below.
