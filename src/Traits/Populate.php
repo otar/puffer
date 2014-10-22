@@ -9,7 +9,7 @@ trait Populate
     {
 
         if (empty($data)) {
-            throw new Exception('Can not populate a profile with an empty array.');
+            throw new Exception('Can not populate an object with an empty array.');
         } elseif (!isset($data['id'])) {
             throw new Exception('Data is corrupted, it doesn\'t have an "id" parameter.');
         }
