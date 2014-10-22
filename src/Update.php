@@ -5,26 +5,34 @@ namespace Puffer;
 class Update extends Core implements \ArrayAccess
 {
 
-    public function __construct($data)
+    public function __construct($input)
     {
-        if (is_array($data)) {
-            return $this->populate($data);
+
+        switch (true) {
+
+            // Populate object with an input data
+            case is_array($input):
+                return $this->populate($input);
+
+            // Check if input is an ID of an update (MongoDB ObjectID)
+            case preg_match(self::PATTERN_MONGODB_OBJECTID, $input):
+                $data = $this->get('updates/' . $input);
+                $this->populate($data);
+                break;
+
         }
 
-        $data = $this->get('updates/' . $data);
-        $this->populate($data);
+        throw new Exception('You have initiated a Profile object with a bad "input" argument.');
 
-        if (!isset($this->id)) {
-            throw new Exception('Update data is corrupted, it doesn\'t have an "id" parameter.');
-        }
     }
 
     private function populate(array $data)
     {
         if (empty($data)) {
             throw new Exception('Can not populate an update with an empty array. Data is empty.');
+        } elseif (!isset($data['id'])) {
+            throw new Exception('Update data is corrupted, it doesn\'t have an "id" parameter.');
         }
-
         foreach ($data as $key => $value) {
             $this->{$key} = $value;
         }

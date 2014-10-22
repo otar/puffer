@@ -31,7 +31,9 @@ class Profile extends Core implements \ArrayAccess
                 break;
 
         }
+
         throw new Exception('You have initiated a Profile object with a bad "input" argument.');
+
     }
 
     private function populate(array $data = [])
