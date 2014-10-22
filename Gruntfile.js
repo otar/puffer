@@ -16,7 +16,8 @@ module.exports = function(grunt)
         },
         src: [
             'src/*.php',
-            'src/Storages/*.php'
+            'src/Storages/*.php',
+            'src/Traits/*.php',
         ],
         tests: 'tests/*.php'
     });
@@ -53,6 +54,7 @@ module.exports = function(grunt)
             files: [
                 'src/*.php',
                 'src/Storages/*.php',
+                'src/Traits/*.php',
                 'tests/*.php'
             ],
             tasks: ['php']

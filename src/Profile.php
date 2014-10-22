@@ -5,6 +5,8 @@ namespace Puffer;
 class Profile extends Core implements \ArrayAccess
 {
 
+    use Traits\Populate;
+
     const PATTERN_TWITTER_USERNAME = '/^@?(\w){1,15}$/';
 
     /**
@@ -33,21 +35,6 @@ class Profile extends Core implements \ArrayAccess
         }
 
         throw new Exception('You have initiated a Profile object with a bad "input" argument.');
-
-    }
-
-    private function populate(array $data = [])
-    {
-
-        if (empty($data)) {
-            throw new Exception('Can not populate a profile with an empty array. Data is empty.');
-        } elseif (!isset($data['id'])) {
-            throw new Exception('Profile data is corrupted, it doesn\'t have an "id" parameter.');
-        }
-
-        foreach ($data as $key => $value) {
-            $this->{$key} = $value;
-        }
 
     }
 

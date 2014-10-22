@@ -5,6 +5,8 @@ namespace Puffer;
 class Update extends Core implements \ArrayAccess
 {
 
+    use Traits\Populate;
+
     public function __construct($input)
     {
 
@@ -24,18 +26,6 @@ class Update extends Core implements \ArrayAccess
 
         throw new Exception('You have initiated a Profile object with a bad "input" argument.');
 
-    }
-
-    private function populate(array $data = [])
-    {
-        if (empty($data)) {
-            throw new Exception('Can not populate an update with an empty array. Data is empty.');
-        } elseif (!isset($data['id'])) {
-            throw new Exception('Update data is corrupted, it doesn\'t have an "id" parameter.');
-        }
-        foreach ($data as $key => $value) {
-            $this->{$key} = $value;
-        }
     }
 
     public function offsetExists($key)
