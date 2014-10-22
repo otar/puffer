@@ -63,12 +63,17 @@ module.exports = function(grunt)
     grunt.loadNpmTasks('grunt-notify');
 
     // Task declarations
-    grunt.registerTask('default', ['php', 'watch']);
+    grunt.registerTask('default', [
+        'php',
+        'watch'
+    ]);
     grunt.registerTask('php', [
         'phplint',
         'phpcsfixer',
         'phpunit'
     ]);
-    grunt.registerTask('test', ['phpunit']);
+    grunt.registerTask('test', [
+        'phpunit'
+    ]);
 
 };

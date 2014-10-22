@@ -10,8 +10,7 @@ class Puffer extends Core
     private $map_endpoints = [
         'user' => 'user',
         'configuration' => 'info/configuration',
-        'profiles' => function()
-        {
+        'profiles' => public function () {
             return new Profiles;
         };
     ];
