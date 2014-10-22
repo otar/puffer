@@ -8,18 +8,18 @@ class Update extends Core implements \ArrayAccess
     public function __construct($data)
     {
         if (is_array($data)) {
-            return $this->setData($data);
+            return $this->populate($data);
         }
 
         $data = $this->get('updates/' . $data);
-        $this->setData($data);
+        $this->populate($data);
 
         if (!isset($this->id)) {
             throw new Exception('Update data is corrupted, it doesn\'t have an "id" parameter.');
         }
     }
 
-    private function setData(array $data)
+    private function populate(array $data)
     {
         if (empty($data)) {
             throw new Exception('Can not populate an update with an empty array. Data is empty.');

@@ -14,13 +14,13 @@ class Profile extends Core implements \ArrayAccess
 
         switch (true) {
             case is_array($input):
-                return $this->setData($input);
+                return $this->populate($input);
             case preg_match('/^@?(\w){1,15}$/', $input):
                 return $this->findProfileByTwitterUsername($input);
             default:
                 // TODO: check mongodb id on regex
                 $data = $this->get('profiles/' . $input);
-                $this->setData($data);
+                $this->populate($data);
 
                 if (!isset($this->id)) {
                     throw new Exception('Profile data is corrupted, it doesn\'t have an "id" parameter.');
@@ -30,7 +30,7 @@ class Profile extends Core implements \ArrayAccess
 
     }
 
-    private function setData(array $data = [])
+    private function populate(array $data = [])
     {
 
         if (empty($data)) {
@@ -49,7 +49,7 @@ class Profile extends Core implements \ArrayAccess
         $profiles = new Profiles;
         foreach ($profiles as $profile) {
             if ($profile->service == 'twitter' and $match_username === strtolower($profile->service_username)) {
-                return $this->setData((array) $profile);
+                return $this->populate((array) $profile);
             }
         }
         throw new Exception('Can not find profile for the Twitter username "' . $username . '".');
