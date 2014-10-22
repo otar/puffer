@@ -61,8 +61,7 @@ class Profiles extends Core implements \Iterator, \ArrayAccess, \Countable
 
     public function offsetSet($index, $profile)
     {
-        if (!is_object($profile) or !($profile instanceof Profile))
-        {
+        if (!is_object($profile) or !($profile instanceof Profile)) {
             throw new Exception('You are setting or appending a either a non-object or an object which is not instance of Profile.');
         }
         if (NULL === $index) {
