@@ -43,7 +43,7 @@ class Update extends Core implements \ArrayAccess
     public function offsetSet($key, $value)
     {
         if (NULL === $key) {
-            throw new Exception('Appending value on the Update object is not allowed.');
+            throw new Exception('Appending value on an Update object is not allowed.');
         }
         $this->{$key} = $value;
     }

@@ -73,18 +73,16 @@ class Profile extends Core implements \ArrayAccess
 
     public function offsetSet($key, $value)
     {
-        // TODO: check instance type, it should implement Profile object
         if (NULL === $key) {
-            // TODO: Throw an exception?
-        } else {
-            $this->{$key} = $value;
+            throw new Exception('Appending value on a Profile object is not allowed.');
         }
+        $this->{$key} = $value;
     }
 
     public function offsetUnset($key)
     {
         if (!$this->offsetExists($key)) {
-            // TODO: throw exception
+            throw new Exception('Index is out of range on the Profile object.');
         }
         unset($this->{$key});
     }
@@ -97,6 +95,7 @@ class Profile extends Core implements \ArrayAccess
             return [];
         }
 
+        // Wrap result updates in the Update class
         $return = [];
         foreach ($result['updates'] as $update) {
             $return[] = new Update($update);
