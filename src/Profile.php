@@ -5,6 +5,8 @@ namespace Puffer;
 class Profile extends Core implements \ArrayAccess
 {
 
+    const PATTERN_TWITTER_USERNAME = '/^@?(\w){1,15}$/';
+
     /**
      * @param  mixed  $input
      * @return object Returns Puffer\Profile object with profile data as public attributes.
@@ -13,21 +15,23 @@ class Profile extends Core implements \ArrayAccess
     {
 
         switch (true) {
+
+            // Populate object with an input data
             case is_array($input):
                 return $this->populate($input);
-            case preg_match('/^@?(\w){1,15}$/', $input):
+
+            // Check if input is a Twitter username (starts with @ character)
+            case preg_match(self::PATTERN_TWITTER_USERNAME, $input):
                 return $this->findProfileByTwitterUsername($input);
-            default:
-                // TODO: check mongodb id on regex
+
+            // Check if input is an ID of a profile (MongoDB ObjectID)
+            case preg_match(self::PATTERN_MONGODB_OBJECTID, $input):
                 $data = $this->get('profiles/' . $input);
                 $this->populate($data);
-
-                if (!isset($this->id)) {
-                    throw new Exception('Profile data is corrupted, it doesn\'t have an "id" parameter.');
-                }
                 break;
-        }
 
+        }
+        throw new Exception('You have initiated a Profile object with a bad "input" argument.');
     }
 
     private function populate(array $data = [])
@@ -35,6 +39,8 @@ class Profile extends Core implements \ArrayAccess
 
         if (empty($data)) {
             throw new Exception('Can not populate a profile with an empty array. Data is empty.');
+        } elseif (!isset($data['id'])) {
+            throw new Exception('Profile data is corrupted, it doesn\'t have an "id" parameter.');
         }
 
         foreach ($data as $key => $value) {

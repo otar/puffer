@@ -7,7 +7,8 @@ use GuzzleHttp\Client;
 class Core
 {
 
-    const API_VERSION = 1;
+    const API_VERSION = 1,
+        PATTERN_MONGODB_OBJECTID = '/^[0-9a-fA-F]{24}$/';
 
     protected static $options = [
             'consumer_key' => NULL,
