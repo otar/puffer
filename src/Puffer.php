@@ -7,14 +7,6 @@ use Puffer\Storages\Session;
 class Puffer extends Core
 {
 
-    private $map_endpoints = [
-        'user' => 'user',
-        'configuration' => 'info/configuration',
-        'profiles' => public function () {
-            return new Profiles;
-        };
-    ];
-
     public function __construct(array $options)
     {
 
@@ -24,7 +16,11 @@ class Puffer extends Core
 
         self::$options = array_merge(self::$options, $options);
 
-        if (isset(self::$options['storage']) and is_object(self::$options['storage']) and self::$options['storage'] instanceof Storages\StorageInterface) {
+        if (
+                isset(self::$options['storage'])
+            and is_object(self::$options['storage'])
+            and self::$options['storage'] instanceof Storages\StorageInterface
+        ) {
             self::$storage = self::$options['storage'];
         } else {
             self::$storage = new Storages\Session;
@@ -61,13 +57,25 @@ class Puffer extends Core
 
     public function __get($name)
     {
-        if (!array_key_exists($name, $this->map_endpoints)) {
-            throw new Exception('You have called an undefined attribute "' . $name . '".');
+
+        switch ($name) {
+
+            // User profile data
+            case 'user':
+                return (object) $this->get('user');
+
+            // General configuration options
+            case 'configuration':
+                return (object) $this->get('info/configuration');
+
+            // Get all profiles
+            case 'profiles':
+                return new Profiles;
+
         }
 
-        return is_string($this->map_endpoints[$name])
-            ? (object) $this->get($this->map_endpoints[$name])
-            : $this->map_endpoints[$name])();
+        throw new Exception('You have called an undefined attribute "' . $name . '".');
+
     }
 
     public function shares($link)
