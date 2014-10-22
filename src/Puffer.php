@@ -9,13 +9,18 @@ class Puffer extends Core
 
     private $map_endpoints = [
         'user' => 'user',
-        'configuration' => 'info/configuration'
+        'configuration' => 'info/configuration',
+        'profiles' => function()
+        {
+            return new Profiles;
+        };
     ];
 
     public function __construct(array $options)
     {
-        if (!is_array($options) or empty($options)) {
-            // TODO: throw exception
+
+        if (empty($options)) {
+            throw new Exception('Options argument is empty, please pass an array with auth parameters.');
         }
 
         self::$options = array_merge(self::$options, $options);
@@ -35,7 +40,7 @@ class Puffer extends Core
 
         $code = filter_input(INPUT_GET, 'code');
         if (empty($code)) {
-            // TODO: throw exception
+            throw new Exception('Incoming parameter "code" either does not exist or is empty.');
         }
 
         self::getAccessToken($code);
@@ -58,10 +63,12 @@ class Puffer extends Core
     public function __get($name)
     {
         if (!array_key_exists($name, $this->map_endpoints)) {
-            // TODO: throw exception
+            throw new Exception('You have called an undefined attribute "' . $name . '".');
         }
 
-        return (object) $this->get($this->map_endpoints[$name]);
+        return is_string($this->map_endpoints[$name])
+            ? (object) $this->get($this->map_endpoints[$name])
+            : $this->map_endpoints[$name])();
     }
 
     public function shares($link)

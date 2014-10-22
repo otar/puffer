@@ -90,8 +90,7 @@ class Core
 
             }
 
-            // TODO: Change this useless message.
-            throw new \RuntimeException('Bad Request or response.');
+            throw new \RuntimeException('Unexpected error occurred.');
 
         }
 

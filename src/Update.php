@@ -15,14 +15,14 @@ class Update extends Core implements \ArrayAccess
         $this->setData($data);
 
         if (!isset($this->id)) {
-            // TODO: throw exception
+            throw new Exception('Update data is corrupted, it doesn\'t have an "id" parameter.');
         }
     }
 
     private function setData(array $data)
     {
         if (empty($data)) {
-            // TODO: throw exception
+            throw new Exception('Can not populate an update with an empty array. Data is empty.');
         }
 
         foreach ($data as $key => $value) {

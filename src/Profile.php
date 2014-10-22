@@ -18,22 +18,23 @@ class Profile extends Core implements \ArrayAccess
             case preg_match('/^@?(\w){1,15}$/', $input):
                 return $this->findProfileByTwitterUsername($input);
             default:
+                // TODO: check mongodb id on regex
                 $data = $this->get('profiles/' . $input);
                 $this->setData($data);
 
                 if (!isset($this->id)) {
-                    // TODO: throw exception
+                    throw new Exception('Profile data is corrupted, it doesn\'t have an "id" parameter.');
                 }
                 break;
         }
 
     }
 
-    private function setData(array $data)
+    private function setData(array $data = [])
     {
 
         if (empty($data)) {
-            // TODO: throw exception
+            throw new Exception('Can not populate a profile with an empty array. Data is empty.');
         }
 
         foreach ($data as $key => $value) {
@@ -110,11 +111,14 @@ class Profile extends Core implements \ArrayAccess
 
     public function create($text, $options = [])
     {
-        // TODO: Check and remove "profile_ids" in options
-        $result = $this->post('updates/create', [
+        // Remove unnecessary options, we already pass them manually below.
+        isset($options['text']) and unset($options['text']);
+        isset($options['profile_ids']) and unset($options['profile_ids']);
+
+        $result = $this->post('updates/create', $options + [
             'text' => $text,
             'profile_ids' => [$this->id]
-        ] + $options);
+        ]);
 
         $result = (object) $result;
 
