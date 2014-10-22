@@ -42,18 +42,16 @@ class Update extends Core implements \ArrayAccess
 
     public function offsetSet($key, $value)
     {
-        // TODO: check instance type, it should implement Profile object
         if (NULL === $key) {
-            // TODO: Throw an exception?
-        } else {
-            $this->{$key} = $value;
+            throw new Exception('Appending value on the Update object is not allowed.');
         }
+        $this->{$key} = $value;
     }
 
     public function offsetUnset($key)
     {
         if (!$this->offsetExists($key)) {
-            // TODO: throw exception
+            throw new Exception('Index is out of range on the Update object.');
         }
         unset($this->{$key});
     }

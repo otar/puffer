@@ -59,20 +59,23 @@ class Profiles extends Core implements \Iterator, \ArrayAccess, \Countable
         return $this->offsetExists($index) ? $this->profiles[$index] : null;
     }
 
-    public function offsetSet($index, $value)
+    public function offsetSet($index, $profile)
     {
-        // TODO: check instance type, it should implement Profile object
+        if (!is_object($profile) or !($profile instanceof Profile))
+        {
+            throw new Exception('You are setting or appending a either a non-object or an object which is not instance of Profile.');
+        }
         if (NULL === $index) {
-            $this->profiles[] = $value;
+            $this->profiles[] = $profile;
         } else {
-            $this->profiles[$index] = $value;
+            $this->profiles[$index] = $profile;
         }
     }
 
     public function offsetUnset($index)
     {
         if (!$this->offsetExists($index)) {
-            // TODO: throw exception
+            throw new Exception('Profile index is out of range.');
         }
         unset($this->profiles[$index]);
     }
