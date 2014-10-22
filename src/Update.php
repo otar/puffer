@@ -15,10 +15,10 @@ class Update extends Core implements \ArrayAccess
                 return $this->populate($input);
 
             // Check if input is an ID of an update (MongoDB ObjectID)
-            case preg_match(self::PATTERN_MONGODB_OBJECTID, $input):
+            case $this->matches(self::PATTERN_MONGODB_OBJECTID, $input):
                 $data = $this->get('updates/' . $input);
-                $this->populate($data);
-                break;
+
+                return $this->populate($data);
 
         }
 

@@ -104,6 +104,17 @@ class Core
         return self::$storage->set('access_token', $token);
     }
 
+    protected function matches($pattern, $subject)
+    {
+        $match = preg_match($pattern, $subject);
+
+        if (FALSE === $match) {
+            return FALSE;
+        }
+
+        return $match === 1;
+    }
+
     private function getErrorMessage($error_code)
     {
         if (empty(self::$error_codes)) {

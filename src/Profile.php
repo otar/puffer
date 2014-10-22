@@ -21,14 +21,14 @@ class Profile extends Core implements \ArrayAccess
                 return $this->populate($input);
 
             // Check if input is a Twitter username (starts with @ character)
-            case preg_match(self::PATTERN_TWITTER_USERNAME, $input):
+            case $this->matches(self::PATTERN_TWITTER_USERNAME, $input):
                 return $this->findProfileByTwitterUsername($input);
 
             // Check if input is an ID of a profile (MongoDB ObjectID)
-            case preg_match(self::PATTERN_MONGODB_OBJECTID, $input):
+            case $this->matches(self::PATTERN_MONGODB_OBJECTID, $input):
                 $data = $this->get('profiles/' . $input);
-                $this->populate($data);
-                break;
+
+                return $this->populate($data);
 
         }
 
@@ -130,8 +130,12 @@ class Profile extends Core implements \ArrayAccess
     public function create($text, $options = [])
     {
         // Remove unnecessary options, we already pass them manually below.
-        isset($options['text']) and unset($options['text']);
-        isset($options['profile_ids']) and unset($options['profile_ids']);
+        if (isset($options['text'])) {
+            unset($options['text']);
+        }
+        if (isset($options['profile_ids'])) {
+            unset($options['profile_ids']);
+        }
 
         $result = $this->post('updates/create', $options + [
             'text' => $text,
